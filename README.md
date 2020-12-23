@@ -1,24 +1,28 @@
-# visionneur3d
+# visionneuse 3D & 2D ( objet 3D et sprite )
 
-## Project setup
+- des models 3D et 2D d'exemple sont disponible via src/assets/
+
+## Bêta version 
 ```
-npm install
+Features disponibles :
+
+- Import d'objet 3D et 2D ( .glb, .fbx, .jpg, .png ) 
+- Outils de règlages 3D:
+  - Informations sur le model.
+  - Nombres de triangles.
+  - Mode wireframe ( affiche les wireframes du model )
+  - Post-Processing ( BloomEffect, HueSaturation, ToneMapping ).
+  - Rotation du model.
+  - Animation ( lis l'animation principale du model si il y'en a ).
+  - Environement ( lumières d'environement, hdri cubemap ).
+  - Règlages d'intensités des lumières de la scene.
+
+- Outils de règlages 2D:
+  - Informations sur le sprite ( affichage de l'image ).
+  - Dark/Light mode.
+  - Vitesse de lecture de l'animation.
+  - Nombre d'image horizontal ( uniquement horizontal pour l'instant ) 
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Techno utilisé:
+Three.js, Vue.js/Router/VueX/Eslint, 
