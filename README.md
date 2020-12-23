@@ -1,6 +1,6 @@
-# visionneuse 3D & 2D ( objet 3D et sprite )
+# Visionneuse 3D & 2D ( objet 3D et sprite )
 
-- des models 3D et 2D d'exemple sont disponible via src/assets/
+( Des models 3D et 2D d'exemple sont disponible via ce path src/assets/ )
 
 ## Bêta version 
 ```
