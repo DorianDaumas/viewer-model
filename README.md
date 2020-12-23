@@ -2,6 +2,8 @@
 
 ( Des models 3D et 2D d'exemple sont disponible via ce path src/assets/ )
 
+# <a href="https://3d-inspector.netlify.app/#/"> Lien vers l'application</a>
+
 ## Bêta version 
 ```
 Features disponibles :
