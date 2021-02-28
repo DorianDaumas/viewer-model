@@ -260,12 +260,6 @@ export default {
 
 
     vertexMode(){
-       if (this.toggleVertexMode) {
-         console.log("oui")
-       }
-       else{
-         console.log("non")
-       }
     },
 
     light(){
@@ -283,7 +277,6 @@ export default {
         ************** */
 
         let object = this.object.object
-        console.log(this.animation.length,"this.animation")
         if (this.animation.animations.length !== 0) {
           this.mixer = new THREE.AnimationMixer( object );
           this.action = this.mixer.clipAction( this.animation.animations[0] ); 
@@ -306,7 +299,6 @@ export default {
         })
         this.renderer.outputEncoding = THREE.sRGBEncoding
         this.controls = new OrbitControls(this.camera, this.renderer.domElement)
-        // this.renderer.setClearColor("#8a7263")
         this.renderer.setPixelRatio( window.devicePixelRatio );
         this.renderer.setSize(sceneCanvasW, sceneCanvasH);
         this.renderer.shadowMap.enabled = true
@@ -314,96 +306,54 @@ export default {
         this.renderer.shadowMapSoft = true
         this.renderer.shadowMap.autoUpdate = false
         this.renderer.shadowMap.needsUpdate = true
-
-
         this.postProcess()
-        this.sceneCanvas.append(this.renderer.domElement)
-        
-        // console.log(POSTPROCESSING,"lightIntensity")
+        this.sceneCanvas.append(this.renderer.domElement)        
         this.light1 = new THREE.PointLight(0xffffff,this.LightIntensity);
         this.light1.position.set(0,300,500);
         this.scene.add(this.light1);
-        
         this.light2 = new THREE.PointLight(0xffffff,this.LightIntensity);
         this.light2.position.set(500,100,0);
         this.scene.add(this.light2);
-        
         this.light3 = new THREE.PointLight(0xffffff,this.LightIntensity);
         this.light3.position.set(0,100,-500);
         this.scene.add(this.light3);
-
         this.light4 = new THREE.PointLight(0xffffff,this.LightIntensity);
         this.light4.position.set(-500,300,0);
         this.scene.add(this.light4);
-
-        // this.scene.add(new THREE.AxesHelper(10));
-
         this.envMapping()
-        
         const box = new THREE.Box3().setFromObject(object);
         const size = box.getSize(new THREE.Vector3()).length();
         const center = box.getCenter(new THREE.Vector3());
-
         this.controls.reset();
-
         object.position.x += (object.position.x - center.x);
         object.position.y += (object.position.y - center.y);
         object.position.z += (object.position.z - center.z);
-
-
         this.controls.maxDistance = size * 15;
         this.camera.near = size / 25;
         this.camera.far = size * 25;
         this.camera.updateProjectionMatrix();
-
-
         this.camera.lookAt( new THREE.Vector3() );
-
         this.camera.position.copy(center);
         this.camera.position.x += size / 3.0;
         this.camera.position.y += size / 3.0;
         this.camera.position.z += size / 3.0;
-
-        this.camera.lookAt(center);
-
-
-        
-
+        this.camera.lookAt(center);     
         this.scene.add(object);
         var result = this.objectGeometry.reduce((sum, item) => {
-          if (item.geometry.index !== null) {
-            
+          if (item.geometry.index !== null) {        
             return sum = sum+item.geometry.index.count / 3;
           }
           else{
             return sum = sum+item.geometry.attributes.position.count / 3;
           }
-          
         },0);
-
+        
         this.triangles = result.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-         console.log(this.triangles,"this.triangles")
-        // this.scene.add( new THREE.BoxHelper( object ) );
-
-// console.log(this.objectGeometry,"this.objectGeometrythis.objectGeometrythis.objectGeometry")
-//          this.objectGeometry.map(element => {
-//             console.log(element.geometry,"element.geometry")
-//             BufferGeometryUtils.computeTangents( element.geometry );
-
-//             this.vnh = new VertexNormalsHelper( element, 0.01, 0x00ff00, 2 );
-//             this.vth = new VertexTangentsHelper( element,0.01, 0x00ffff, 2 );
-//             this.scene.add( this.vnh );    
-//             this.scene.add( this.vth );
-
-//           });
-      // console.log(this.renderer,"jnzefjnzeikfnbzkeybf")
-
         this.animateThreeJs()
     },
    
     // resize
     windowResize(){
-
         let sceneCanvasW = this.sceneCanvas.offsetWidth 
         let sceneCanvasH = this.sceneCanvas.offsetHeight 
         this.camera.aspect = sceneCanvasW / sceneCanvasH;
@@ -423,17 +373,12 @@ export default {
         this.composer.render(this.clock.getDelta());
       }else{
         requestAnimationFrame(this.animateThreeJs)
-        
         if ( this.animation.animations.length  > 0 ) this.mixer.update( this.clock.getDelta() );
         this.controls.update();
         this.renderer.render(this.scene, this.camera)
         this.renderer.shadowMap.needsUpdate = true
       }
-      
-    //   this.renderer.render(this.scene, this.camera)
-    //   this.renderer.shadowMap.needsUpdate = true
     },
-
   }
 }
 
