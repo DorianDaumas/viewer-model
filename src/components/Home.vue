@@ -22,9 +22,7 @@
 
 <script>
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
-// import * as THREE from 'three'
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js'
-// import * as THREE from 'three'
 
 export default {
   name: 'Home',
@@ -41,17 +39,11 @@ export default {
   methods: {
   
     handleFileUpload(){
-      // console.log(this.$refs.file.files,"t//his.$refs.file.files")
-      // this.file = this.$refs.file.files
-      //  for (let i = 0; i < this.file.length; i++) {
-      //   this.test = URL.createObjectURL(this.file[i])
-      // }
       this.file = this.$refs.file.files[0];
       const loaderGLTF = new GLTFLoader();
       const loaderFBX = new FBXLoader();
       let objectURL = URL.createObjectURL(this.file);
       let objectInfo = this.file
-
 
       if (this.file.name.match(/\.(GLB|glb)$/)) {
         loaderGLTF.load(objectURL, ( gltf ) => {
@@ -61,7 +53,6 @@ export default {
           gltf.scene.traverse( ( object ) => {
             if ( object.isMesh ) {
               allMaterial.push(object.material)
-              
               objectGeometry.push(object)
             }
           })
@@ -74,10 +65,7 @@ export default {
           this.$router.push('/Scene')
         },( xhr ) => {
           this.xhr = ( xhr.loaded / xhr.total * 100 ) + '% charger'
-        },( e ) => {
-          console.log(e,"e")
-          // console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-        })
+        },( e ) => {})
       }
 
       else if (this.file.name.match(/\.(png|jpg|PNG|JPG)$/)) {
@@ -94,7 +82,6 @@ export default {
           fbx.traverse( ( object ) => {
             if ( object.isMesh ) {
               allMaterial.push(object.material)
-
               objectGeometry.push(object)
             }
           })
@@ -108,20 +95,13 @@ export default {
           this.$router.push('/Scene')
         },( xhr ) => {
           this.xhr = ( xhr.loaded / xhr.total * 100 ) + '% charger'
-        },( onError ) => {
-          console.log(onError,"e")
-        })
-        
+        },( onError ) => {})
       }  
       else{
         this.file = null
          this.error = "Le fichier que vous avez envoyé n'est pas un fichier .glb ou .fbx"
-      }
-
-          
-    }
-    
-
+      }         
+    } 
   }
 }
 </script>
