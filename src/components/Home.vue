@@ -65,7 +65,7 @@ export default {
           this.$router.push('/Scene')
         },( xhr ) => {
           this.xhr = ( xhr.loaded / xhr.total * 100 ) + '% charger'
-        },( e ) => {})
+        })
       }
 
       else if (this.file.name.match(/\.(png|jpg|PNG|JPG)$/)) {
@@ -95,7 +95,7 @@ export default {
           this.$router.push('/Scene')
         },( xhr ) => {
           this.xhr = ( xhr.loaded / xhr.total * 100 ) + '% charger'
-        },( onError ) => {})
+        })
       }  
       else{
         this.file = null
